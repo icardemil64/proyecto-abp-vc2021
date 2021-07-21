@@ -51,22 +51,18 @@ for m in matches:
     list_validos.append(m)
 
 list_validos = sorted(list_validos,key = lambda x:x.distance)
-""""
-lines1 = cv2.computeCorrespondEpilines(pts2.reshape(-1,1,2), 2,F)
-lines1 = lines1.reshape(-1,3)
-img5,img6 = drawlines(img1,img2,lines1,pts1,pts2)
 
-lines2 = cv2.computeCorrespondEpilines(pts1.reshape(-1,1,2), 1,F)
-lines2 = lines2.reshape(-1,3)
-img3,img4 = drawlines(img2,img1,lines2,pts2,pts1)
 
-plt.subplot(121),plt.imshow(img5)
-plt.subplot(122),plt.imshow(img3)
-plt.show()
-"""
-
+plt.figure()
+plt.subplot(211)
+plt.axis('off')
+plt.title('Correspondencia Bruta con detector ORB')
+dbg_img = cv2.drawMatches(img1, kp1, img2, kp2, matches, None)
+plt.imshow(dbg_img[:,:,[2,1,0]])
+plt.subplot(212)
+plt.axis('off')
+plt.title('Correspondencia Mejorada por Geometría Epipolar')
 result = cv2.drawMatches(img1, kp1, img2, kp2, list_validos[:30], None, flags=2)
-
-cv2.imshow("Detector ORB",result)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+plt.imshow(result[:,:,[2,1,0]])
+plt.tight_layout()
+plt.show()
