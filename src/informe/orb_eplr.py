@@ -1,3 +1,4 @@
+from typing import List
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
@@ -19,8 +20,8 @@ def drawlines(img1,img2,lines,pts1,pts2):
   return img1,img2
 
 
-img1 = cv2.imread("img/manga1.jpg",0)
-img2 = cv2.imread("img/manga2.jpg",0)
+img1 = cv2.imread("img/pared1.jpg",0)
+img2 = cv2.imread("img/pared2.jpg",0)
 
 #ORB Detector
 orb = cv2.ORB_create()
@@ -50,18 +51,8 @@ for m in matches:
     list_validos.append(m)
 
 list_validos = sorted(list_validos,key = lambda x:x.distance)
+result = cv2.drawMatches(img1, kp1, img2, kp2, matches, None, flags=2)
 
-
-plt.figure()
-plt.subplot(211)
-plt.axis('off')
-plt.title('Correspondencia Bruta con detector ORB')
-dbg_img = cv2.drawMatches(img1, kp1, img2, kp2, matches[:100], None, flags=2)
-plt.imshow(dbg_img[:,:,[2,1,0]])
-plt.subplot(212)
-plt.axis('off')
-plt.title('Correspondencia Mejorada por Geometría Epipolar')
-result = cv2.drawMatches(img1, kp1, img2, kp2, list_validos[:30], None, flags=2)
-plt.imshow(result[:,:,[2,1,0]])
-plt.tight_layout()
-plt.show()
+cv2.imshow("Geometria epipolar + ORB",result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
