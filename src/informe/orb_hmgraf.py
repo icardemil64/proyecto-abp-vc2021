@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 # Cargar las imagenes 
-img0 = cv2.imread('img/manga1.jpg', 0)
-img1 = cv2.imread('img/manga2.jpg', 0)
+img0 = cv2.imread('img/juegos1.jpg', 0)
+img1 = cv2.imread('img/juegos2.jpg', 0)
 
 # Detectando los puntos claves, sus descriptores y calculando el matching bruto
 detector = cv2.ORB_create()

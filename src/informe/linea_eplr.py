@@ -17,8 +17,8 @@ def drawlines(img1,img2,lines,pts1,pts2):
     img2 = cv2.circle(img2,tuple(pt2),5,color,-1)
   return img1,img2
 
-img1 = cv2.imread("img/manga1.jpg",0)
-img2 = cv2.imread("img/manga2.jpg",0)
+img1 = cv2.imread("img/juegos1.jpg",0)
+img2 = cv2.imread("img/juegos2.jpg",0)
 
 sift = cv2.xfeatures2d.SIFT_create(350)
 

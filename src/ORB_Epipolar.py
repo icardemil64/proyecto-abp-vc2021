@@ -19,8 +19,8 @@ def drawlines(img1,img2,lines,pts1,pts2):
   return img1,img2
 
 
-img1 = cv2.imread("img/manga1.jpg",0)
-img2 = cv2.imread("img/manga2.jpg",0)
+img1 = cv2.imread("img/juegos1.jpg",0)
+img2 = cv2.imread("img/juegos2.jpg",0)
 
 #ORB Detector
 orb = cv2.ORB_create()
@@ -46,6 +46,7 @@ pts2 = pts2[mask.ravel()==1]
 
 list_validos = []
 for m in matches:
+  print(m.queryIdx)
   if m.queryIdx in pts1:
     list_validos.append(m)
 
